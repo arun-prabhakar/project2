@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
@@ -21,7 +22,7 @@ public class Timesheet {
 	@GeneratedValue(generator="TSID_SEQ", strategy=GenerationType.AUTO)
 	private int userid;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL) // Remove Cascade
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL) // Remove Cascade
 	@JoinColumn(name="USER_ID")
 	private String author_id;
 	
@@ -31,7 +32,7 @@ public class Timesheet {
 	private Double hours_total;
 	private int status;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL) // Remove Cascade
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL) // Remove Cascade
 	@JoinColumn(name="USER_ID")
 	private int resolver_id;
 	
