@@ -10,25 +10,40 @@ import { CreateReimbComponent } from './components/create-reimb/create-reimb.com
 import { HomeComponent } from './components/home/home.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { LoggedInGuard } from './guard/logged-in.guard';
+import { TimesheetsComponent } from './components/timesheets/timesheets.component';
+import { NewTimesheetComponent } from './components/new-timesheet/new-timesheet.component';
+import { AdvancepaymentComponent } from './components/advancepayment/advancepayment.component';
 
 export const appRoutes: Routes = [
   {
     path: 'reimb',
     component: ReimbursementComponent,
-    canActivate: [
-      LoggedInGuard
-    ]
+    // canActivate: [
+    //   LoggedInGuard
+    // ]
   },
   {
     path: 'login',
     component: LoginComponent
   },
   {
+    path: 'timesheet',
+    component: TimesheetsComponent
+  },
+  {
+    path: 'new-timesheet',
+    component: NewTimesheetComponent
+  },
+  {
+    path: 'advance',
+    component: AdvancepaymentComponent
+  },
+  {
     path: 'new-reimbursement',
     component: CreateReimbComponent,
-    canActivate: [
-      LoggedInGuard
-    ]
+    // canActivate: [
+    //   LoggedInGuard
+    // ]
   },
   {
     path: 'home',
@@ -41,9 +56,9 @@ export const appRoutes: Routes = [
   {
     path: 'reimbs',
     component: ReimbsComponent,
-    canActivate: [
-      LoggedInGuard
-    ],
+    // canActivate: [
+    //   LoggedInGuard
+    // ],
     children: [
       {
         path: 'all',

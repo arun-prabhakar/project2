@@ -27,6 +27,9 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { LoggedInGuard } from './guard/logged-in.guard';
 import { FooterComponent } from './components/footer/footer.component';
 import { TypePipePipe } from './pipes/type-pipe.pipe';
+import { TimesheetsComponent } from './components/timesheets/timesheets.component';
+import { NewTimesheetComponent } from './components/new-timesheet/new-timesheet.component';
+import { AdvancepaymentComponent } from './components/advancepayment/advancepayment.component';
 
 
 @NgModule({
@@ -53,7 +56,10 @@ import { TypePipePipe } from './pipes/type-pipe.pipe';
     HomeComponent,
     WelcomeComponent,
     FooterComponent,
-    TypePipePipe
+    TypePipePipe,
+    TimesheetsComponent,
+    NewTimesheetComponent,
+    AdvancepaymentComponent
   ],
   providers: [
     ReimburseService,
