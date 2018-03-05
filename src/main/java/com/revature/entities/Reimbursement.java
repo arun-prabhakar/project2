@@ -19,27 +19,32 @@ public class Reimbursement {
 	@Column(name="REIMB_ID")
 	@SequenceGenerator(name="REIMBID_SEQ", sequenceName="REIMBID_SEQ")
 	@GeneratedValue(generator="REIMBID_SEQ", strategy=GenerationType.AUTO)
-	private int reimbid;
+	private Integer reimbid;
 	
 	private double reimb_amount;
 	private Timestamp reimb_submitted;
 	private Timestamp reimb_resolved;
 	private String reimb_description;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL) // Remove Cascade
-	@JoinColumn(name="USER_ID")
-	private int reimb_author;
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="AUTHOR_ID")
+	private Users reimb_author;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL) // Remove Cascade
-	@JoinColumn(name="USER_ID")
-	private int reimb_resolver;
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="RESOLVER_ID")
+	private Users reimb_resolver;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL) // Remove Cascade
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="STATUS_ID")
 	private int reimb_status;
+	
 	private String reimb_type;
+	public Reimbursement() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public Reimbursement(int reimbid, double reimb_amount, Timestamp reimb_submitted, Timestamp reimb_resolved,
-			String reimb_description, int reimb_author, int reimb_resolver, int reimb_status, String reimb_type) {
+			String reimb_description, Users reimb_author, Users reimb_resolver, int reimb_status, String reimb_type) {
 		super();
 		this.reimbid = reimbid;
 		this.reimb_amount = reimb_amount;
@@ -50,10 +55,6 @@ public class Reimbursement {
 		this.reimb_resolver = reimb_resolver;
 		this.reimb_status = reimb_status;
 		this.reimb_type = reimb_type;
-	}
-	public Reimbursement() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public String toString() {
@@ -69,10 +70,10 @@ public class Reimbursement {
 		long temp;
 		temp = Double.doubleToLongBits(reimb_amount);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + reimb_author;
+		result = prime * result + ((reimb_author == null) ? 0 : reimb_author.hashCode());
 		result = prime * result + ((reimb_description == null) ? 0 : reimb_description.hashCode());
 		result = prime * result + ((reimb_resolved == null) ? 0 : reimb_resolved.hashCode());
-		result = prime * result + reimb_resolver;
+		result = prime * result + ((reimb_resolver == null) ? 0 : reimb_resolver.hashCode());
 		result = prime * result + reimb_status;
 		result = prime * result + ((reimb_submitted == null) ? 0 : reimb_submitted.hashCode());
 		result = prime * result + ((reimb_type == null) ? 0 : reimb_type.hashCode());
@@ -90,7 +91,10 @@ public class Reimbursement {
 		Reimbursement other = (Reimbursement) obj;
 		if (Double.doubleToLongBits(reimb_amount) != Double.doubleToLongBits(other.reimb_amount))
 			return false;
-		if (reimb_author != other.reimb_author)
+		if (reimb_author == null) {
+			if (other.reimb_author != null)
+				return false;
+		} else if (!reimb_author.equals(other.reimb_author))
 			return false;
 		if (reimb_description == null) {
 			if (other.reimb_description != null)
@@ -102,7 +106,10 @@ public class Reimbursement {
 				return false;
 		} else if (!reimb_resolved.equals(other.reimb_resolved))
 			return false;
-		if (reimb_resolver != other.reimb_resolver)
+		if (reimb_resolver == null) {
+			if (other.reimb_resolver != null)
+				return false;
+		} else if (!reimb_resolver.equals(other.reimb_resolver))
 			return false;
 		if (reimb_status != other.reimb_status)
 			return false;
@@ -150,16 +157,16 @@ public class Reimbursement {
 	public void setReimb_description(String reimb_description) {
 		this.reimb_description = reimb_description;
 	}
-	public int getReimb_author() {
+	public Users getReimb_author() {
 		return reimb_author;
 	}
-	public void setReimb_author(int reimb_author) {
+	public void setReimb_author(Users reimb_author) {
 		this.reimb_author = reimb_author;
 	}
-	public int getReimb_resolver() {
+	public Users getReimb_resolver() {
 		return reimb_resolver;
 	}
-	public void setReimb_resolver(int reimb_resolver) {
+	public void setReimb_resolver(Users reimb_resolver) {
 		this.reimb_resolver = reimb_resolver;
 	}
 	public int getReimb_status() {
@@ -174,6 +181,5 @@ public class Reimbursement {
 	public void setReimb_type(String reimb_type) {
 		this.reimb_type = reimb_type;
 	}
-
 	
 }

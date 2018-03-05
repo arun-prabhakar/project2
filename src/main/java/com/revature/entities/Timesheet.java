@@ -20,7 +20,7 @@ public class Timesheet {
 	@Column(name="TS_ID")
 	@SequenceGenerator(name="TSID_SEQ", sequenceName="TSID_SEQ")
 	@GeneratedValue(generator="TSID_SEQ", strategy=GenerationType.AUTO)
-	private int userid;
+	private Integer userid;
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL) // Remove Cascade
 	@JoinColumn(name="USER_ID")

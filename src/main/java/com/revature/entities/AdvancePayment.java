@@ -22,7 +22,7 @@ public class AdvancePayment {
 	@Column(name="ADV_ID")
 	@SequenceGenerator(name="ADVID_SEQ", sequenceName="ADVID_SEQ")
 	@GeneratedValue(generator="ADVID_SEQ", strategy=GenerationType.AUTO)
-	private int advid;
+	private Integer advid;
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL) // Remove Cascade
 	@JoinColumn(name="USER_ID")

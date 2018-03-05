@@ -5,9 +5,9 @@
         <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
         
-        <property name="hibernate.connection.url">jdbc:oracle:thin:@orcl.chmobvzracfh.us-east-2.rds.amazonaws.com:1521:orcl</property>
-        <property name="hibernate.connection.username">bears</property>
-        <property name="hibernate.connection.password">p4ssw0rd</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@goldteam.ctnhn6jczsfw.us-east-2.rds.amazonaws.com:1521:orcl</property>
+        <property name="hibernate.connection.username">gold</property>
+        <property name="hibernate.connection.password">goldteamrules</property>
         
         <!-- Some hibernate configurations -->
         <property name="show_sql">true</property>
@@ -15,10 +15,12 @@
         
         <property name="hibernate.connection.pool_size">5</property>
         
-        <mapping class="com.revature.entities.User"/>
-        <mapping class="com.revature.entities.Reimbursement"/>
-        <mapping class="com.revature.entities.Timesheet"/>
-        <mapping class="com.revature.entities.AdvancePayment"/>
+        <mapping class="com.revature.entities.Users"/>
+        <!-- <mapping class="com.revature.entities.Reimbursement"/> -->
+        <!-- <mapping class="com.revature.entities.Timesheet"/> -->
+        <!-- <mapping class="com.revature.entities.AdvancePayment"/> -->
+        <mapping class="com.revature.entities.UserRole"/>
+        <mapping class="com.revature.entities.Status"/>
         
     
     </session-factory>

@@ -1,5 +1,8 @@
 package com.revature.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -18,7 +21,7 @@ public class Users {
 	@Column(name="USER_ID")
 	@SequenceGenerator(name="USERID_SEQ", sequenceName="USERID_SEQ")
 	@GeneratedValue(generator="USERID_SEQ", strategy=GenerationType.AUTO)
-	private int userid;
+	private Integer userid;
 	
 	private String username;
 	private String password;
@@ -27,13 +30,17 @@ public class Users {
 	private String user_email;
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="ROLE_ID")
-	private int user_role;
+	@JoinColumn(name="USER_ROLE")
+	private UserRole role;
+	
 	private Double wage;
 	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="USER_ID")
-	private int employer_id;
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="EMPLOYER_ID")
+	private Users employer;
+	
+	@OneToMany(mappedBy="employer")
+	private Set<Users> subordinates = new HashSet<Users>();
 	
 	private Double debt;
 	public Users() {
@@ -41,7 +48,7 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 	public Users(int userid, String username, String password, String first_name, String last_name, String user_email,
-			int user_role, Double wage, int employer_id, Double debt) {
+			UserRole role, Double wage, Users employer_id, Double debt) {
 		super();
 		this.userid = userid;
 		this.username = username;
@@ -49,22 +56,28 @@ public class Users {
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.user_email = user_email;
-		this.user_role = user_role;
+		this.role = role;
 		this.wage = wage;
-		this.employer_id = employer_id;
+		this.employer = employer_id;
 		this.debt = debt;
+	}
+	@Override
+	public String toString() {
+		return "Users [userid=" + userid + ", username=" + username + ", password=" + password + ", first_name="
+				+ first_name + ", last_name=" + last_name + ", user_email=" + user_email + ", user_role=" + role
+				+ ", wage=" + wage + ", employer_id=" + employer.getUsername() + ", debt=" + debt + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((debt == null) ? 0 : debt.hashCode());
-		result = prime * result + employer_id;
+		result = prime * result + ((employer == null) ? 0 : employer.hashCode());
 		result = prime * result + ((first_name == null) ? 0 : first_name.hashCode());
 		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((user_email == null) ? 0 : user_email.hashCode());
-		result = prime * result + user_role;
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + userid;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		result = prime * result + ((wage == null) ? 0 : wage.hashCode());
@@ -84,7 +97,10 @@ public class Users {
 				return false;
 		} else if (!debt.equals(other.debt))
 			return false;
-		if (employer_id != other.employer_id)
+		if (employer == null) {
+			if (other.employer != null)
+				return false;
+		} else if (!employer.equals(other.employer))
 			return false;
 		if (first_name == null) {
 			if (other.first_name != null)
@@ -106,7 +122,10 @@ public class Users {
 				return false;
 		} else if (!user_email.equals(other.user_email))
 			return false;
-		if (user_role != other.user_role)
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
 			return false;
 		if (userid != other.userid)
 			return false;
@@ -121,12 +140,6 @@ public class Users {
 		} else if (!wage.equals(other.wage))
 			return false;
 		return true;
-	}
-	@Override
-	public String toString() {
-		return "Users [userid=" + userid + ", username=" + username + ", password=" + password + ", first_name="
-				+ first_name + ", last_name=" + last_name + ", user_email=" + user_email + ", user_role=" + user_role
-				+ ", wage=" + wage + ", employer_id=" + employer_id + ", debt=" + debt + "]";
 	}
 	public int getUserid() {
 		return userid;
@@ -164,11 +177,11 @@ public class Users {
 	public void setUser_email(String user_email) {
 		this.user_email = user_email;
 	}
-	public int getUser_role() {
-		return user_role;
+	public UserRole getUser_role() {
+		return role;
 	}
-	public void setUser_role(int user_role) {
-		this.user_role = user_role;
+	public void setUser_role(String user_role) {
+		this.role = role;
 	}
 	public Double getWage() {
 		return wage;
@@ -176,11 +189,11 @@ public class Users {
 	public void setWage(Double wage) {
 		this.wage = wage;
 	}
-	public int getEmployer_id() {
-		return employer_id;
+	public Users getEmployer_id() {
+		return employer;
 	}
-	public void setEmployer_id(int employer_id) {
-		this.employer_id = employer_id;
+	public void setEmployer_id(Users employer_id) {
+		this.employer = employer_id;
 	}
 	public Double getDebt() {
 		return debt;
@@ -188,6 +201,5 @@ public class Users {
 	public void setDebt(Double debt) {
 		this.debt = debt;
 	}
-	
 	
 }
