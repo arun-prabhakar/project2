@@ -8,15 +8,11 @@ import { IMyDpOptions, IMyDateModel, IMyDayLabels } from 'angular4-datepicker/sr
 })
 export class NewTimesheetComponent implements OnInit {
 
-  private monday: number;
-  private tuesday: number;
-  private wednesday: number;
-  private thursday: number;
-  private friday: number;
+
 
 
   public myDatePickerOptions: IMyDpOptions = {
-    dayLabels: {su: 'Sun', mo: 'Mon', tu: 'Tue', we: 'Wed', th: 'Thu', fr: 'Fri', sa: 'Sat'},
+    dayLabels: { su: 'Sun', mo: 'Mon', tu: 'Tue', we: 'Wed', th: 'Thu', fr: 'Fri', sa: 'Sat' },
     firstDayOfWeek: 'mon',
     editableDateField: false,
     sunHighlight: true,
@@ -25,7 +21,20 @@ export class NewTimesheetComponent implements OnInit {
     dateFormat: 'mm.dd.yyyy',
   };
 
-  public model: any = { date: { year: 2018, month: 0, day: 0 } };
+  public model: any = { date: { year: 2018, month: 3, day: 1 } };
+
+  fullSheet = {
+
+    year: this.model.date.year,
+    month: this.model.date.month,
+    day: this.model.date.day,
+    monday: 0,
+    tuesday: 0,
+    wednesday: 0,
+    thursday: 0,
+    friday: 0,
+
+  };
 
   constructor() { }
 
@@ -34,8 +43,7 @@ export class NewTimesheetComponent implements OnInit {
 
   submitTimesheet() {
 
-    console.log(this.model.date.month, this.model.date.day, this.model.date.year);
-    console.log(this.monday, this.tuesday, this.wednesday, this.thursday, this.friday);
+   console.log(this.fullSheet);
 
   }
 
