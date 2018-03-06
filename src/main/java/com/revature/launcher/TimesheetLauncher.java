@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import com.revature.dao.TimesheetDao;
 import com.revature.dao.TimesheetHibernate;
 import com.revature.entities.Reimbursement;
-import com.revature.entities.UserRole;
+import com.revature.entities.Status;
 import com.revature.entities.Users;
 
 public class TimesheetLauncher {
@@ -25,8 +25,9 @@ public class TimesheetLauncher {
 		Users z = td.getById(26);
 		Timestamp ts1 = Timestamp.valueOf("2007-09-23 10:10:10.00");
 		Timestamp ts2 = Timestamp.valueOf("2000-02-23 10:10:10.00");
+		Status st = new Status(0, "Pending");
 		//Integer a = new Integer(0);
-		Reimbursement re = new Reimbursement(1, 500.0, ts1, ts2, "New laptop", z, y, 0, "Pending");
+		Reimbursement re = new Reimbursement(1, 500.0, ts1, ts2, "New laptop", z, y, st, "Pending");
 		log.info(re);
 		log.info(td.saveReimbursement(re));
 		//log.trace(u);
