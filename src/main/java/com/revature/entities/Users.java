@@ -39,8 +39,8 @@ public class Users {
 	@JoinColumn(name="EMPLOYER_ID")
 	private Users employer;
 	
-	@OneToMany(mappedBy="employer")
-	private Set<Users> subordinates = new HashSet<Users>();
+//	@OneToMany(mappedBy="employer")
+//	private Set<Users> subordinates = new HashSet<Users>();
 	
 	private Double debt;
 	public Users() {
