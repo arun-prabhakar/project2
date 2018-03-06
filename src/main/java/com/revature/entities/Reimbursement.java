@@ -27,24 +27,25 @@ public class Reimbursement {
 	private String reimb_description;
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="AUTHOR_ID")
+	@JoinColumn(name="REIMB_AUTHOR")
 	private Users reimb_author;
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="RESOLVER_ID")
+	@JoinColumn(name="REIMB_RESOLVER")
 	private Users reimb_resolver;
 	
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="STATUS_ID")
-	private int reimb_status;
+	@JoinColumn(name="REIMB_STATUS")
+	private Status reimb_status;
 	
 	private String reimb_type;
 	public Reimbursement() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Reimbursement(int reimbid, double reimb_amount, Timestamp reimb_submitted, Timestamp reimb_resolved,
-			String reimb_description, Users reimb_author, Users reimb_resolver, int reimb_status, String reimb_type) {
+	public Reimbursement(Integer reimbid, double reimb_amount, Timestamp reimb_submitted, Timestamp reimb_resolved,
+			String reimb_description, Users reimb_author, Users reimb_resolver, Status reimb_status,
+			String reimb_type) {
 		super();
 		this.reimbid = reimbid;
 		this.reimb_amount = reimb_amount;
@@ -60,7 +61,7 @@ public class Reimbursement {
 	public String toString() {
 		return "Reimbursement [reimbid=" + reimbid + ", reimb_amount=" + reimb_amount + ", reimb_submitted="
 				+ reimb_submitted + ", reimb_resolved=" + reimb_resolved + ", reimb_description=" + reimb_description
-				+ ", reimb_author=" + reimb_author + ", reimb_resolver=" + reimb_resolver + ", reimb_status="
+				+ ", reimb_author=" + reimb_author.getUsername() + ", reimb_resolver=" + reimb_resolver.getUsername() + ", reimb_status="
 				+ reimb_status + ", reimb_type=" + reimb_type + "]";
 	}
 	@Override
@@ -74,10 +75,10 @@ public class Reimbursement {
 		result = prime * result + ((reimb_description == null) ? 0 : reimb_description.hashCode());
 		result = prime * result + ((reimb_resolved == null) ? 0 : reimb_resolved.hashCode());
 		result = prime * result + ((reimb_resolver == null) ? 0 : reimb_resolver.hashCode());
-		result = prime * result + reimb_status;
+		result = prime * result + ((reimb_status == null) ? 0 : reimb_status.hashCode());
 		result = prime * result + ((reimb_submitted == null) ? 0 : reimb_submitted.hashCode());
 		result = prime * result + ((reimb_type == null) ? 0 : reimb_type.hashCode());
-		result = prime * result + reimbid;
+		result = prime * result + ((reimbid == null) ? 0 : reimbid.hashCode());
 		return result;
 	}
 	@Override
@@ -111,7 +112,10 @@ public class Reimbursement {
 				return false;
 		} else if (!reimb_resolver.equals(other.reimb_resolver))
 			return false;
-		if (reimb_status != other.reimb_status)
+		if (reimb_status == null) {
+			if (other.reimb_status != null)
+				return false;
+		} else if (!reimb_status.equals(other.reimb_status))
 			return false;
 		if (reimb_submitted == null) {
 			if (other.reimb_submitted != null)
@@ -123,14 +127,17 @@ public class Reimbursement {
 				return false;
 		} else if (!reimb_type.equals(other.reimb_type))
 			return false;
-		if (reimbid != other.reimbid)
+		if (reimbid == null) {
+			if (other.reimbid != null)
+				return false;
+		} else if (!reimbid.equals(other.reimbid))
 			return false;
 		return true;
 	}
-	public int getReimbid() {
+	public Integer getReimbid() {
 		return reimbid;
 	}
-	public void setReimbid(int reimbid) {
+	public void setReimbid(Integer reimbid) {
 		this.reimbid = reimbid;
 	}
 	public double getReimb_amount() {
@@ -169,10 +176,10 @@ public class Reimbursement {
 	public void setReimb_resolver(Users reimb_resolver) {
 		this.reimb_resolver = reimb_resolver;
 	}
-	public int getReimb_status() {
+	public Status getReimb_status() {
 		return reimb_status;
 	}
-	public void setReimb_status(int reimb_status) {
+	public void setReimb_status(Status reimb_status) {
 		this.reimb_status = reimb_status;
 	}
 	public String getReimb_type() {
@@ -181,5 +188,6 @@ public class Reimbursement {
 	public void setReimb_type(String reimb_type) {
 		this.reimb_type = reimb_type;
 	}
+	
 	
 }

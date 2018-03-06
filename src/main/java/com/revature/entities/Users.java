@@ -35,12 +35,12 @@ public class Users {
 	
 	private Double wage;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="EMPLOYER_ID")
 	private Users employer;
 	
-	@OneToMany(mappedBy="employer")
-	private Set<Users> subordinates = new HashSet<Users>();
+//	@OneToMany(mappedBy="employer")
+//	private Set<Users> subordinates = new HashSet<Users>();
 	
 	private Double debt;
 	public Users() {
