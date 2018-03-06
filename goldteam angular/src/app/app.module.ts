@@ -4,13 +4,13 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MyDatePickerModule, MyDatePicker } from 'angular4-datepicker/src/my-date-picker';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 
 import { appRoutes } from './routes';
 import { ReimbursementComponent } from './components/reimbursement/reimbursement.component';
-import { HeroPowerPipe } from './pipes/hero-power.pipe';
 import { ReimbsComponent } from './components/reimbs/reimbs.component';
 
 import { ReimburseService } from './services/reimburse.service';
@@ -39,13 +39,13 @@ import { AdvancepaymentComponent } from './components/advancepayment/advancepaym
     HttpClientModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    MyDatePickerModule
   ],
   declarations: [
     AppComponent,
     NavComponent,
     ReimbursementComponent,
-    HeroPowerPipe,
     ReimbsComponent,
     AllReimbsComponent,
     PendingReimbsComponent,
@@ -65,6 +65,7 @@ import { AdvancepaymentComponent } from './components/advancepayment/advancepaym
     ReimburseService,
     CookieService,
   LoggedInGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,
+  NewTimesheetComponent]
 })
 export class AppModule { }
