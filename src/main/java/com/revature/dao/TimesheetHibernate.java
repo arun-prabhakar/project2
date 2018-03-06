@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 
 import com.revature.entities.Reimbursement;
 import com.revature.entities.Status;
+import com.revature.entities.Timesheet;
 import com.revature.entities.UserRole;
 import com.revature.entities.Users;
 import com.revature.util.SessionUtil;
@@ -35,6 +36,17 @@ public class TimesheetHibernate implements TimesheetDao {
 		tx.commit();
 		se.close();
 		return r;
+	}
+	
+	@Override
+	public Timesheet saveTimesheet(Timesheet t) {
+		Session se = su.getSession();
+		Transaction tx = se.beginTransaction();
+		int id = (int) se.save(t); // u is now a persistent object
+		log.trace("The generated id is: " + id);
+		tx.commit();
+		se.close();
+		return t;
 	}
 	
 	

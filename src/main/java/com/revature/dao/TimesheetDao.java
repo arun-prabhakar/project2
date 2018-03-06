@@ -2,6 +2,7 @@ package com.revature.dao;
 
 import com.revature.entities.Reimbursement;
 import com.revature.entities.Status;
+import com.revature.entities.Timesheet;
 import com.revature.entities.UserRole;
 import com.revature.entities.Users;
 
@@ -20,5 +21,7 @@ public interface TimesheetDao {
 	Reimbursement saveReimbursement(Reimbursement r);
 
 	UserRole loadRoleById(int id);
+
+	Timesheet saveTimesheet(Timesheet t);
 	
 }

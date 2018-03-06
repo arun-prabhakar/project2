@@ -17,7 +17,7 @@
         
         <mapping class="com.revature.entities.Users"/>
         <mapping class="com.revature.entities.Reimbursement"/>
-        <!-- <mapping class="com.revature.entities.Timesheet"/> -->
+        <mapping class="com.revature.entities.Timesheet"/>
        <!--  <mapping class="com.revature.entities.AdvancePayment"/> -->
         <mapping class="com.revature.entities.UserRole"/>
         <mapping class="com.revature.entities.Status"/>
