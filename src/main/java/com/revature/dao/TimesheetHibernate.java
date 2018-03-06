@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.revature.entities.AdvancePayment;
 import com.revature.entities.Reimbursement;
 import com.revature.entities.Status;
 import com.revature.entities.Timesheet;
@@ -47,6 +48,17 @@ public class TimesheetHibernate implements TimesheetDao {
 		tx.commit();
 		se.close();
 		return t;
+	}
+	
+	@Override
+	public AdvancePayment saveAdvancePayment(AdvancePayment a) {
+		Session se = su.getSession();
+		Transaction tx = se.beginTransaction();
+		int id = (int) se.save(a); // u is now a persistent object
+		log.trace("The generated id is: " + id);
+		tx.commit();
+		se.close();
+		return a;
 	}
 	
 	

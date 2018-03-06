@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+import com.revature.entities.AdvancePayment;
 import com.revature.entities.Reimbursement;
 import com.revature.entities.Status;
 import com.revature.entities.Timesheet;
@@ -23,5 +24,7 @@ public interface TimesheetDao {
 	UserRole loadRoleById(int id);
 
 	Timesheet saveTimesheet(Timesheet t);
+
+	AdvancePayment saveAdvancePayment(AdvancePayment a);
 	
 }
