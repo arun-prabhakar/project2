@@ -1,5 +1,7 @@
 package com.revature.dao;
 
+import java.util.Set;
+
 import com.revature.entities.AdvancePayment;
 import com.revature.entities.Reimbursement;
 import com.revature.entities.Status;
@@ -11,7 +13,7 @@ public interface TimesheetDao {
 
 	Users saveUser(Users u);
 
-	Users getById(int id);
+	Users getUserById(int id);
 
 	Reimbursement getReimbursementById(int id);
 
@@ -26,5 +28,9 @@ public interface TimesheetDao {
 	Timesheet saveTimesheet(Timesheet t);
 
 	AdvancePayment saveAdvancePayment(AdvancePayment a);
+
+	Users getUserByUsername(String username);
+
+	Set<Users> getUsersByEmployer(Users employer);
 	
 }
