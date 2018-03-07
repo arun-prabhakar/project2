@@ -12,8 +12,9 @@ export class NewTimesheetComponent implements OnInit {
 
 
   public myDatePickerOptions: IMyDpOptions = {
-    dayLabels: { su: 'Sun', mo: 'Mon', tu: 'Tue', we: 'Wed', th: 'Thu', fr: 'Fri', sa: 'Sat' },
     firstDayOfWeek: 'mon',
+    dayLabels: {su: 'Sun', mo: 'Mon', tu: 'Tue', we: 'Wed', th: 'Thu', fr: 'Fri', sa: 'Sat'},
+    markCurrentDay: true,
     editableDateField: false,
     sunHighlight: true,
     inline: false,
