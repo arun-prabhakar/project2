@@ -1,20 +1,22 @@
 package com.revature.launcher;
 
-import java.sql.Timestamp;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
 
 import com.revature.dao.TimesheetDao;
 import com.revature.dao.TimesheetHibernate;
-import com.revature.entities.AdvancePayment;
-import com.revature.entities.Status;
 import com.revature.entities.Users;
+import com.revature.util.SessionUtil;
 
 public class TimesheetLauncher {
 	private static Logger log = Logger.getRootLogger();
 	private static TimesheetDao td = new TimesheetHibernate();
+	private static SessionUtil su = SessionUtil.getSessionUtil();
 	
 	public static void main(String[] args) {
+		Session se = su.getSession();
 		//log.info(td.getById(21));
 //		UserRole us = td.getRoleById(0);
 //		Users x = td.getUserById(25);
@@ -43,10 +45,15 @@ public class TimesheetLauncher {
 		
 	// What a mess lol
 		
-//		String username = "brady";
-//		log.info(td.getUserByUsername(username));
-		
-	
+		String username = "COOLUSER";
+		Users us = td.getUserByUsername(username);
+		se.update(us);
+		log.info(us);
+		us.getSubordinates().size();
+		Set<Users> userset = us.getSubordinates();
+		log.info(userset);
+		se.close();
+
 	}
 
 }

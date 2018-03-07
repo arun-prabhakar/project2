@@ -38,9 +38,9 @@ public class Users {
 	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="EMPLOYER_ID")
 	private Users employer;
-	
-//	@OneToMany(mappedBy="employer")
-//	private Set<Users> subordinates = new HashSet<Users>();
+
+	@OneToMany(mappedBy="employer", fetch = FetchType.LAZY)
+	private Set<Users> subordinates = new HashSet<Users>();
 	
 	private Double debt;
 	public Users() {
@@ -65,7 +65,7 @@ public class Users {
 	public String toString() {
 		return "Users [userid=" + userid + ", username=" + username + ", password=" + password + ", first_name="
 				+ first_name + ", last_name=" + last_name + ", user_email=" + user_email + ", user_role=" + role
-				+ ", wage=" + wage + ", employer_id=" + employer.getUsername() + ", debt=" + debt + "]";
+				+ ", wage=" + wage + ", employer_id=" + ", debt=" + debt + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -201,5 +201,28 @@ public class Users {
 	public void setDebt(Double debt) {
 		this.debt = debt;
 	}
+	public UserRole getRole() {
+		return role;
+	}
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
+	public Users getEmployer() {
+		return employer;
+	}
+	public void setEmployer(Users employer) {
+		this.employer = employer;
+	}
+	public Set<Users> getSubordinates() {
+		return subordinates;
+	}
+	public void setSubordinates(Set<Users> subordinates) {
+		this.subordinates = subordinates;
+	}
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
+	
+	
 	
 }
