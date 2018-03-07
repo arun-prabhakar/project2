@@ -42,6 +42,11 @@ public class Users {
 	@OneToMany(mappedBy="employer", fetch = FetchType.LAZY)
 	private Set<Users> subordinates = new HashSet<Users>();
 	
+	@OneToMany(mappedBy="author", fetch = FetchType.LAZY)
+	private Set<Timesheet> timesheets = new HashSet<Timesheet>();
+	
+	
+	
 	private Double debt;
 	public Users() {
 		super();
@@ -222,7 +227,12 @@ public class Users {
 	public void setUserid(Integer userid) {
 		this.userid = userid;
 	}
-	
+	public Set<Timesheet> getTimesheets() {
+		return timesheets;
+	}
+	public void setTimesheets(Set<Timesheet> timesheets) {
+		this.timesheets = timesheets;
+	}
 	
 	
 }

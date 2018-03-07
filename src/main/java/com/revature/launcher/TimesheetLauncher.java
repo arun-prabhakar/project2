@@ -45,13 +45,15 @@ public class TimesheetLauncher {
 		
 	// What a mess lol
 		
-		String username = "COOLUSER";
+		String username = "brady";
 		Users us = td.getUserByUsername(username);
 		se.update(us);
 		log.info(us);
-		us.getSubordinates().size();
-		Set<Users> userset = us.getSubordinates();
-		log.info(userset);
+		//us.getSubordinates().size();
+		//Set<Users> userset = us.getSubordinates();
+		//log.info(userset);
+		us.getTimesheets().size();
+		log.info(us.getTimesheets());
 		se.close();
 
 	}
