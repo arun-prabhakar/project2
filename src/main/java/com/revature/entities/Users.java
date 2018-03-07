@@ -45,7 +45,11 @@ public class Users {
 	@OneToMany(mappedBy="author", fetch = FetchType.LAZY)
 	private Set<Timesheet> timesheets = new HashSet<Timesheet>();
 	
+	@OneToMany(mappedBy="reimb_author", fetch = FetchType.LAZY)
+	private Set<Reimbursement> reimbursements = new HashSet<Reimbursement>();
 	
+	@OneToMany(mappedBy="author", fetch = FetchType.LAZY)
+	private Set<AdvancePayment> advancePayments = new HashSet<AdvancePayment>();
 	
 	private Double debt;
 	public Users() {
@@ -233,6 +237,20 @@ public class Users {
 	public void setTimesheets(Set<Timesheet> timesheets) {
 		this.timesheets = timesheets;
 	}
+	public Set<Reimbursement> getReimbursements() {
+		return reimbursements;
+	}
+	public void setReimbursements(Set<Reimbursement> reimbursements) {
+		this.reimbursements = reimbursements;
+	}
+	public Set<AdvancePayment> getAdvancePayments() {
+		return advancePayments;
+	}
+	public void setAdvancePayments(Set<AdvancePayment> advancePayments) {
+		this.advancePayments = advancePayments;
+	}
+	
+	
 	
 	
 }

@@ -53,7 +53,11 @@ public class TimesheetLauncher {
 		//Set<Users> userset = us.getSubordinates();
 		//log.info(userset);
 		us.getTimesheets().size();
+		us.getReimbursements().size();
+		us.getAdvancePayments().size();
 		log.info(us.getTimesheets());
+		log.info(us.getReimbursements());
+		log.info(us.getAdvancePayments());
 		se.close();
 
 	}
